@@ -3,22 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Watch Video</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background-color: #000; display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; }
+    body { background-color: #000; display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; font-family: sans-serif; }
     video { width: 100vw; height: 100vh; object-fit: contain; }
+    #unmute-btn {
+      position: absolute;
+      top: 20px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.85);
+      color: #000;
+      font-weight: bold;
+      border-radius: 20px;
+      cursor: pointer;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
+  <div id="unmute-btn">🔊 Tap for Sound</div>
   <video id="v" autoplay muted playsinline loop>
     <source src="https://www.meatspin.com/shock-sites/files/2-girls-1-cup.mp4" type="video/mp4">
   </video>
   <script>
-    // Unmutes audio automatically if the user touches the screen anywhere
+    const v = document.getElementById('v');
+    const btn = document.getElementById('unmute-btn');
+
     document.body.addEventListener('click', () => {
-      const v = document.getElementById('v');
       v.muted = false;
+      btn.style.display = 'none';
     });
   </script>
 </body>
